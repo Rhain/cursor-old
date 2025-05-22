@@ -37,6 +37,8 @@ posthog.init('phc_OrLbTmMnw0Ou1C4xuVIWJJaijIcp4J9Cm4JsAVRLtJo', {
     capture_pageview: false,
 })
 
+console.log(11111);
+
 connector.returnHomeDir().then((homeDir) => {
     posthog.identify(homeDir)
     posthog.capture('Opened Editor', {})
