@@ -92,5 +92,5 @@ export default function resolver(path: string, options: ResolveOptions) {
 
 
 function YOR_N() {
-    console.log()
+    console.log(222);
 }
