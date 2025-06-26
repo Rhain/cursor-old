@@ -9,6 +9,7 @@ import {
     AuthRateLimitError,
     BadModelError,
     BadOpenAIAPIKeyError,
+    BadDeepSeekAPIKeyError,
     ExpectedBackendError,
     NoAuthGlobalNewRateLimitError,
     NoAuthGlobalOldRateLimitError,
@@ -277,6 +278,14 @@ export async function getPayload({
     if (oaiKey == null || oaiKey === '' || !useOpenAI) {
         oaiKey = null
     }
+
+    let deepSeekKey: string | undefined | null =
+        state.settingsState.settings.deepSeekKey
+    const deepSeekModel = state.settingsState.settings.deepSeekModel
+    const useDeepSeek = state.settingsState.settings.useDeepSeekKey
+    if (deepSeekKey == null || deepSeekKey === '' || !useDeepSeek) {
+        deepSeekKey = null
+    }
     const userRequest = {
         // Core request
         message: lastUserMessage.message,
@@ -330,6 +339,8 @@ export async function getPayload({
         rootPath: state.global.rootPath,
         apiKey: oaiKey,
         customModel: openAIModel,
+        deepSeekApiKey: deepSeekKey,
+        deepSeekModel: deepSeekModel,
     }
     console.log({ data })
 
@@ -397,6 +408,8 @@ export const continueGeneration = createAsyncThunk(
                             throw new AuthRateLimitError()
                         case 'BAD_API_KEY':
                             throw new BadOpenAIAPIKeyError()
+                        case 'BAD_DEEPSEEK_API_KEY':
+                            throw new BadDeepSeekAPIKeyError()
                         case 'BAD_MODEL':
                             throw new BadModelError()
                         case 'NOT_LOGGED_IN':
@@ -620,6 +633,8 @@ export const streamResponse = createAsyncThunk(
                             throw new AuthRateLimitError()
                         case 'BAD_API_KEY':
                             throw new BadOpenAIAPIKeyError()
+                        case 'BAD_DEEPSEEK_API_KEY':
+                            throw new BadDeepSeekAPIKeyError()
                         case 'BAD_MODEL':
                             throw new BadModelError()
                         case 'NOT_LOGGED_IN':
@@ -1054,6 +1069,8 @@ export const diffResponse = createAsyncThunk(
                             throw new AuthRateLimitError()
                         case 'BAD_API_KEY':
                             throw new BadOpenAIAPIKeyError()
+                        case 'BAD_DEEPSEEK_API_KEY':
+                            throw new BadDeepSeekAPIKeyError()
                         case 'BAD_MODEL':
                             throw new BadModelError()
                         case 'NOT_LOGGED_IN':

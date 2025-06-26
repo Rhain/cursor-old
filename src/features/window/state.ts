@@ -305,6 +305,9 @@ export interface Settings {
     openAIKey?: string
     useOpenAIKey?: boolean
     openAIModel?: string
+    deepSeekKey?: string
+    useDeepSeekKey?: boolean
+    deepSeekModel?: string
     tabSize?: string
 }
 
