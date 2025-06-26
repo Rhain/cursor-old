@@ -60,6 +60,7 @@ import { barExtension } from '../../features/extensions/cmdZBar'
 import { updateCommentsEffect } from '../../features/extensions/comments'
 import { Tag, getStyleTags, tags } from '@lezer/highlight'
 import { fixLintExtension } from '../../features/linter/fixLSPExtension'
+import { codeReviewExtension } from '../../features/linter/codeReviewExtension'
 import { storePaneIdExtensions } from '../../features/extensions/storePane'
 import { store } from '../../app/store'
 import { triggerFileSearch } from '../../features/tools/toolSlice'
@@ -184,6 +185,7 @@ const globalExtensions = [
     autocompleteView,
     storePaneIdExtensions,
     fixLintExtension,
+    codeReviewExtension,
     cursorTooltip(),
     scrollPastEnd(),
     // history({
