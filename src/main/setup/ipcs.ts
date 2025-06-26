@@ -19,6 +19,7 @@ import { FileSystem, fileSystem, setFileSystem } from '../fileSystem'
 import mainWindow from '../window'
 import { store } from '../storeHandler'
 import { resourcesDir } from '../utils'
+import { gitConnector } from '../git'
 
 // TODO: These IPCs should be separated into different modules.
 export default function setupIpcs() {
@@ -598,6 +599,7 @@ export default function setupIpcs() {
         log.info('Opening folder: ' + result)
         if (result && result.length > 0) {
             setFileSystem(new FileSystem())
+            gitConnector.setRootPath(result[0])
             return result[0]
         }
         return null
@@ -606,5 +608,18 @@ export default function setupIpcs() {
     // click on the terminal link
     ipcMain.handle('terminal-click-link', (_event, data) => {
         shell.openExternal(data)
+    })
+
+    // Git operations
+    ipcMain.handle('get_git_status', async () => {
+        return await gitConnector.getGitStatus()
+    })
+
+    ipcMain.handle('get_git_diff', async () => {
+        return await gitConnector.getGitDiff()
+    })
+
+    ipcMain.handle('git_commit', async (_event, message: string) => {
+        await gitConnector.gitCommit(message)
     })
 }
