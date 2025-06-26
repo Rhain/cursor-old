@@ -17,6 +17,7 @@ import { getPlatformInfo } from './utils'
 type NotificationCallback = (data: any) => void
 type RequestCallback = (data: any) => any
 type Callback = () => void
+const name = 10;
 
 const addRemoveCallbacks = () => {
     const notificationCallbacks: { [language: string]: NotificationCallback } =
@@ -422,3 +423,8 @@ const electronConnector = {
 contextBridge.exposeInMainWorld('connector', electronConnector)
 type ElectronConnector = typeof electronConnector
 export default ElectronConnector
+
+
+functon MYNEMS() {
+    
+}

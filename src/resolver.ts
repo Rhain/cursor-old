@@ -89,3 +89,8 @@ export default function resolver(path: string, options: ResolveOptions) {
         ).resolvedModule.resolvedFileName
     }
 }
+
+
+function YOR_N() {
+    console.log(222);
+}
