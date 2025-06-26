@@ -255,6 +255,10 @@ const electronConnector = {
     openContainingFolder: (path: string) =>
         ipcRenderer.invoke('open_containing_folder', path),
     deleteFolder: (path: string) => ipcRenderer.invoke('delete_folder', path),
+    
+    getGitStatus: () => ipcRenderer.invoke('get_git_status'),
+    getGitDiff: () => ipcRenderer.invoke('get_git_diff'),
+    gitCommit: (message: string) => ipcRenderer.invoke('git_commit', message),
     rightClickFolder: (path: string, isRoot: boolean) =>
         ipcRenderer.invoke('right_click_folder', {
             path: path,

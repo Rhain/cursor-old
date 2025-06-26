@@ -18,6 +18,7 @@ import { commentSlice } from '../features/comment/commentSlice'
 import { testSlice } from '../features/tests/testSlice'
 import { fixLSPSlice } from '../features/fixLSP/fixLSPSlice'
 import { codeMirrorSlice } from '../features/codemirror/codemirrorSlice'
+import gitReducer from '../features/git/gitSlice'
 
 const reduceReducers = (...args: any) => {
     const initialState = typeof args[0] !== 'function' && args.shift()
@@ -75,6 +76,7 @@ export const fullReducer = combineReducers({
     commentState: commentSlice.reducer,
     fixLSPState: fixLSPSlice.reducer,
     test: testSlice.reducer,
+    git: gitReducer,
 })
 
 export const store = configureStore({

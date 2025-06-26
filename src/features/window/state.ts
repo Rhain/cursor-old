@@ -379,6 +379,7 @@ export interface FullState {
     languageServerState: LanguageServerState
     commentState: CommentState
     fixLSPState: FixLSPState
+    git: import('../git/gitSlice').GitState
 }
 
 // INITIAL STATE

@@ -36,6 +36,7 @@ import {
 import { loginStatus } from '../features/tools/toolSelectors'
 
 import Modal from 'react-modal'
+import { CommitMessageGenerator } from './commitMessageGenerator'
 
 export function SettingsPopup() {
     const dispatch = useAppDispatch()
@@ -165,6 +166,7 @@ export function SettingsPopup() {
                             <CursorLogin />
                             <OpenAIPanel />
                             <CopilotPanel />
+                            <CommitMessageGenerator />
                             {/* REMOVED CODEBASE-WIDE FEATURES!
                             <RemoteCodebaseSettingsPanel />*/}
                             {languageServerNames.map((name) => (
