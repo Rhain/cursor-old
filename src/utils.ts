@@ -65,6 +65,16 @@ export class BadOpenAIAPIKeyError extends OpenAIError {
     }
 }
 
+export class DeepSeekError extends ExpectedBackendError {}
+export class BadDeepSeekAPIKeyError extends DeepSeekError {
+    constructor(
+        message = 'The provided DeepSeek API key is invalid. Please provide a valid API key.'
+    ) {
+        super(message)
+        this.name = 'BadDeepSeekAPIKeyError'
+    }
+}
+
 export class BadModelError extends ExpectedBackendError {
     constructor(
         message = 'The provided model ID is invalid. Please provide a valid model ID.'
@@ -87,6 +97,7 @@ export type ExpectedError =
     | NoAuthGlobalOldRateLimitError
     | NoAuthGlobalNewRateLimitError
     | BadOpenAIAPIKeyError
+    | BadDeepSeekAPIKeyError
     | BadModelError
     | NotLoggedInError
 
